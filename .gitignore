@@ -1,0 +1,17 @@
+# Vivado-specific files
+*.jou
+*.log
+*.str
+*.csv
+*.html
+*.xml
+*.backup
+*.cache
+*.hw
+*.ip_user_files
+*.sim
+*.runs
+*.sdk
+*.tmp
+#*.xpr
+*.xsa
