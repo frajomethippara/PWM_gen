@@ -31,27 +31,28 @@ entity pwm_gen is
 end pwm_gen;
 
 architecture Behavioral of pwm_gen is
-    constant duty : real := 0.6;
+--    constant duty : real := 0.6;
+    constant duty : integer := 60;
     constant fclk : integer := 200_000_000;
     constant fsw  : integer := 400_000;
     signal counter_pwm: std_logic_vector( 8 downto 0 );
 --    signal duty_count : integer := integer(duty * fclk / fsw);
-    
+    signal duty_count : integer := integer((duty / 100) * fclk / fsw);    
     begin
---    pwm_gen_label: process (clk)
---    begin
---        if rst = '1' then
---            counter_pwm <= (others => '0');
---        elsif rising_edge (clk) then
---            if counter_pwm < (fclk/fsw - 1) then
---                counter_pwm <= counter_pwm + '1';
---            else
---                counter_pwm <= (others => '0');
---            end if;
---        end if; 
---    end process pwm_gen_label;
+    pwm_gen_label: process (clk)
+    begin
+        if rst = '1' then
+            counter_pwm <= (others => '0');
+        elsif rising_edge (clk) then
+            if counter_pwm < (fclk/fsw - 1) then
+                counter_pwm <= counter_pwm + '1';
+            else
+                counter_pwm <= (others => '0');
+            end if;
+        end if; 
+    end process pwm_gen_label;
     
---    pwm_gen_out <= '1' when counter_pwm < duty_count
---                       else '0';
+    pwm_gen_out <= '1' when counter_pwm < duty_count
+                       else '0';
 
 end Behavioral;
