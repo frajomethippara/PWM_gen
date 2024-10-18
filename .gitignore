@@ -1,0 +1,35 @@
+# Build artifacts
+/build/
+/sim/
+/bin/
+*.o
+*.log
+*.vcd
+*.ghw
+
+# Temporary files
+*~
+*.tmp
+*.temp
+
+# IDE/Editor specific files
+.idea/
+.vscode/
+#*.xpr
+*.xise
+*.xproj
+*.prj
+*.db
+
+# Simulation and test bench outputs
+*.out
+*.run
+*.wlf
+
+# Backup files
+*.bak
+*.swp
+
+# Libraries
+/lib/
+/vendor/
