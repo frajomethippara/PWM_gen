@@ -1,17 +1,35 @@
-# Vivado-specific files
-*.jou
+# Build artifacts
+/build/
+/sim/
+/bin/
+*.o
 *.log
-*.str
-*.csv
-*.html
-*.xml
-*.backup
-*.cache
-*.hw
-*.ip_user_files
-*.sim
-*.runs
-*.sdk
+*.vcd
+*.ghw
+
+# Temporary files
+*~
 *.tmp
+*.temp
+
+# IDE/Editor specific files
+.idea/
+.vscode/
 #*.xpr
-*.xsa
+*.xise
+*.xproj
+*.prj
+*.db
+
+# Simulation and test bench outputs
+*.out
+*.run
+*.wlf
+
+# Backup files
+*.bak
+*.swp
+
+# Libraries
+/lib/
+/vendor/
