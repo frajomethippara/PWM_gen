@@ -38,6 +38,7 @@ architecture Behavioral of pwm_gen is
     signal counter_pwm: std_logic_vector( 8 downto 0 );
 --    signal duty_count : integer := integer(duty * fclk / fsw);
     signal duty_count : integer := integer((duty / 100) * fclk / fsw);    
+    
     begin
     pwm_gen_label: process (clk)
     begin
