@@ -43,13 +43,19 @@ architecture Behavioral of pwm_gen is
     pwm_gen_label: process (clk)
     begin
         if rst = '1' then
-            counter_pwm <= (others => '0');
+            counter_pwm <= (others => '1');
         elsif rising_edge (clk) then
             if counter_pwm < (fclk/fsw - 1) then
                 counter_pwm <= counter_pwm + '1';
+--                pwm_gen_out <= '1';
+                report "Values is lower";
             else
                 counter_pwm <= (others => '0');
+--                pwm_gen_out <= '0';
+                report "Valeues is higher";
             end if;
+--            report "Counter PWM Value: " & to_integer(unsigned(counter_pwm));
+            report "Counter PWM Value: " & integer'image(to_integer(unsigned(counter_pwm)));
         end if; 
     end process pwm_gen_label;
     
