@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Mon Nov  4 13:23:45 2024
+# Process ID: 28032
+# Current directory: H:/Projects/FPGA/Basys3/PWM_gen/PWM_gen.runs/impl_1
+# Command line: vivado.exe -log pwm_gen.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source pwm_gen.tcl -notrace
+# Log file: H:/Projects/FPGA/Basys3/PWM_gen/PWM_gen.runs/impl_1/pwm_gen.vdi
+# Journal file: H:/Projects/FPGA/Basys3/PWM_gen/PWM_gen.runs/impl_1\vivado.jou
+# Running On: DESKTOP-10L1NMP, OS: Windows, CPU Frequency: 2400 MHz, CPU Physical cores: 4, Host memory: 8435 MB
+#-----------------------------------------------------------
+source pwm_gen.tcl -notrace
