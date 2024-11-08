@@ -11,6 +11,7 @@ module pwm_gen_testbench
     .pwm_gen_out(pwm_gen_out)
     );
     
+    
 initial begin
     clk = 0;
     rst = 1;
