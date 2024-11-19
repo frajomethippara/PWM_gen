@@ -33,3 +33,6 @@
 # Libraries
 /lib/
 /vendor/
+
+*.wdb
+PWM_gen.sim/
