@@ -33,10 +33,13 @@ use ieee.std_logic_unsigned.all;
 --use UNISIM.VComponents.all;
 
 entity pwm_gen is
+    generic(
+        duty_cycle : integer := 50
+    );
     port(
         clk : in std_logic;
         rst : in std_logic;
-        pwm_gen : out std_logic
+        pwm_out : out std_logic
     );
 end pwm_gen;
 
@@ -55,5 +58,5 @@ architecture Behavioral of pwm_gen is
                 end if;
             end if;
     end process;
-    pwm_gen <= '1' when counter < 20 else '0';
+    pwm_out <= '1' when counter < duty_cycle else '0';
 end Behavioral;
