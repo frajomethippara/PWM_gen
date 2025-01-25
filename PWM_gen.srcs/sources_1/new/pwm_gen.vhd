@@ -33,30 +33,86 @@ use ieee.std_logic_unsigned.all;
 --use UNISIM.VComponents.all;
 
 entity pwm_gen is
-    generic(
-        duty_cycle : integer := 50
-    );
+--    generic(
+--        duty_cycle : integer := 0
+--    );
     port(
         clk : in std_logic;
-        rst : in std_logic;
+        inc_dut_cyc : in std_logic;
         pwm_out : out std_logic
     );
 end pwm_gen;
 
 architecture Behavioral of pwm_gen is
-    signal counter : std_logic_vector( 7 downto 0 );
+    signal counter : integer := 0;
+--    signal counter : integer range 0 to 100 := 0;
+    signal duty_cycle : integer := 0;
     begin
-    process (clk, rst)
-        begin
-            if rst = '1' then
-                counter <= (others => '0');
-            elsif rising_edge(clk) then
-                if counter < 99 then
-                    counter <= counter + '1';
-                else
-                    counter <= (others => '0');
-                end if;
+--    process (clk, inc_dut_cyc)
+--        begin
+----            if inc_dut_cyc = '1' then
+----                counter <= 0;
+----                if duty_cycle < 100 then
+----                  duty_cycle <= duty_cycle + 10;
+----                else
+----                    duty_cycle <= 0;
+----                end if;
+
+--            if rising_edge(clk) then
+--                if inc_dut_cyc = '1' then
+----                if rising_edge(inc_dut_cyc) then
+--                    counter <= 0;
+--                    if duty_cycle < 100 then
+--                      duty_cycle <= duty_cycle + 10;
+--                    else
+--                        duty_cycle <= 0;
+--                    end if;
+--                end if;
+--                if counter < 99 then
+--                    counter <= counter + 1;
+--                else
+--                    counter <= 0;
+--                end if;
+            
+----            elsif rising_edge(inc_dut_cyc) then
+----                counter <= 0;
+----                if duty_cycle < 100 then
+----                  duty_cycle <= duty_cycle + 10;
+----                else
+----                    duty_cycle <= 0;
+----                end if;           
+--            end if;
+            
+----            if counter < duty_cycle  then
+----                pwm_out <= '1';
+----            else
+----                pwm_out <= '0';
+----            end if;
+----            pwm_out <= '1' when counter < duty_cycle else '0';
+--    end process;
+
+
+    process(inc_dut_cyc)
+    begin
+        if rising_edge(inc_dut_cyc) then
+--            counter <= 0;
+            if duty_cycle < 100 then
+                duty_cycle <= duty_cycle + 10;
+            else
+                duty_cycle <= 0;
             end if;
+        end if;      
+    end process;
+    
+    process (clk)
+    begin
+        if rising_edge(clk) then
+            if counter < 99 then
+                counter <= counter + 1;
+            else
+                counter <= 0;
+            end if;     
+        end if;
     end process;
     pwm_out <= '1' when counter < duty_cycle else '0';
 end Behavioral;
