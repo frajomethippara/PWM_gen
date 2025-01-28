@@ -33,14 +33,9 @@ use ieee.std_logic_unsigned.all;
 --use UNISIM.VComponents.all;
 
 entity pwm_gen is
---    generic(
---        duty_cycle : integer := 0
---    );
     port(
         clk : in std_logic;
-        dut_cyc_0 : in std_logic;
-        dut_cyc_1 : in std_logic;
-        dut_cyc_no : in std_logic;
+        dut_cyc : in std_logic_vector(3 downto 0);
         pwm_out : out std_logic
     );
 end pwm_gen;
@@ -49,22 +44,20 @@ architecture Behavioral of pwm_gen is
     signal counter : integer range 0 to 100 := 0;
     signal duty_cycle : integer := 0;
     
-    function getDutyCycle(sw_0 : std_logic;
-                            sw_1 : std_logic;
-                            sw_no : std_logic) return integer is
+    function getDutyCycle(sw_dc : std_logic_vector(3 downto 0)) return integer is
         variable dc : integer range 0 to 100 := 0;                    
         begin
-            if sw_0 = '0' and sw_1 = '0' then
+            if sw_dc(0) = '0' and sw_dc(1) = '0' then
                 dc := 25;
-            elsif sw_0 = '0' and sw_1 = '1' then
+            elsif sw_dc(0) = '0' and sw_dc(1) = '1' then
                 dc := 50;
-            elsif sw_0 = '1' and sw_1 = '0' then
+            elsif sw_dc(0) = '1' and sw_dc(1) = '0' then
                 dc := 75;
-            elsif sw_0 = '1' and sw_1 = '1' then
+            elsif sw_dc(0) = '1' and sw_dc(1) = '1' then
                 dc := 100;
             end if;
             
-            if sw_no = '1' then
+            if sw_dc(2) = '1' then
                 dc := 0;
             end if;
             
@@ -82,7 +75,7 @@ architecture Behavioral of pwm_gen is
                 counter <= 0;
             end if;     
         end if;
-        duty_cycle <= getDutyCycle(dut_cyc_0, dut_cyc_1, dut_cyc_no);
+        duty_cycle <= getDutyCycle(dut_cyc);
     end process;
     pwm_out <= '1' when counter < duty_cycle else '0';
 end Behavioral;
